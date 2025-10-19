@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-translate="vip_system">MG VIP System</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Classic UI -->
+    <div id="classic-ui" class="vip-container hidden">
+        <div class="vip-tablet">
+            <div class="vip-header">
+                <div class="header-left">
+                    <div class="logo">
+                        <img id="classic-logo" class="logo-image" alt="Server Logo">
+                        <span data-translate="vip_system">VIP System</span>
+                    </div>
+                </div>
+                <div class="header-center">
+                    <div class="diamonds-display">
+                        <i class="fas fa-gem"></i>
+                        <span id="diamonds-count-classic">0</span>
+                        <span class="currency-name" data-translate="diamonds">Diamonds</span>
+                    </div>
+                </div>
+                <div class="header-right">
+                    <div class="header-right-buttons">
+                        <button class="tebex-store-btn" onclick="openTebexStore()">
+                            <i class="fas fa-store"></i>
+                            <span data-translate="nav_tebex">Tebex Store</span>
+                        </button>
+                        <button class="close-btn" onclick="closeMenu()">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="vip-navigation">
+                <button class="nav-btn active" data-page="main">
+                    <i class="fas fa-home"></i>
+                    <span data-translate="nav_main">Main</span>
+                </button>
+                <button class="nav-btn" data-page="tiers">
+                    <i class="fas fa-crown"></i>
+                    <span data-translate="nav_tiers">VIP Tiers</span>
+                </button>
+                <button class="nav-btn" data-page="items">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span data-translate="nav_items">Items</span>
+                </button>
+                <button class="nav-btn" data-page="vehicles">
+                    <i class="fas fa-car"></i>
+                    <span data-translate="nav_vehicles">Vehicles</span>
+                </button>
+                <button class="nav-btn" data-page="weapons">
+                    <i class="fas fa-crosshairs"></i>
+                    <span data-translate="nav_weapons">Weapons</span>
+                </button>
+                <button class="nav-btn" data-page="mlos">
+                    <i class="fas fa-building"></i>
+                    <span data-translate="nav_mlos">MLO</span>
+                </button>
+
+                <button class="nav-btn" data-page="money">
+                    <i class="fas fa-dollar-sign"></i>
+                    <span data-translate="nav_money">Money</span>
+                </button>
+                <button class="nav-btn" data-page="settings">
+                    <i class="fas fa-cog"></i>
+                    <span data-translate="nav_settings">Settings</span>
+                </button>
+            </div>
+
+            <div class="vip-content">
+                <div class="page active" id="main-page-classic">
+                    <div class="welcome-section" id="welcome-section-classic">
+                        <div class="vip-tier-display">
+                            <div class="tier-icon">
+                                <i class="fas fa-crown"></i>
+                            </div>
+                            <div class="tier-info">
+                                <h3 id="tier-name-classic" data-translate="no_vip_tier">No VIP Tier</h3>
+                                <p id="tier-benefits-classic" data-translate="purchase_to_unlock">Purchase diamonds to unlock VIP benefits</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="featured-section">
+                        <div class="featured-grid" id="featured-offers-classic">
+                            <!-- Featured offers will be loaded here -->
+                        </div>
+                    </div>
+
+                    <div class="redeem-section">
+                        <h2 data-translate="redeem_diamonds">Redeem Diamonds</h2>
+                        <div class="redeem-card">
+                            <div class="redeem-input-group">
+                                <input type="text" id="transaction-id-classic" data-translate-placeholder="enter_transaction_id" placeholder="Enter Tebex Transaction ID">
+                                <button class="redeem-btn" onclick="redeemDiamonds()">
+                                    <i class="fas fa-gem"></i>
+                                    <span data-translate="redeem">Redeem</span>
+                                </button>
+                            </div>
+                            <p class="redeem-info" data-translate="tebex_transaction_id">Enter your Tebex transaction ID to redeem diamonds</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="page" id="tiers-page-classic">
+                    <div class="tiers-grid" id="tiers-grid-classic">
+                        <!-- VIP tiers will be loaded here -->
+                    </div>
+                </div>
+                 <!-- data-search="items" data-translate-placeholder="search_items" placeholder="Search items..."> -->
+                <div class="page" id="items-page-classic">
+                    <div class="search-filter-container">
+                        <div class="search-box">
+                            <input type="text" class="search-input" data-search="items" data-translate-placeholder="search_items" placeholder="Search items...">
+                            <i class="fas fa-search search-icon"></i>
+                        </div>
+                        <div class="filter-dropdown">
+                            <button class="filter-btn" data-filter-type="items">
+                                <i class="fas fa-filter"></i>
+                                <span data-translate="filter">Filter</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                            <div class="filter-options"></div>
+                        </div>
+                    </div>
+                    <div class="items-grid" id="items-grid-classic">
+                        <!-- Items will be loaded here -->
+                    </div>
+                </div>
+
+                <div class="page" id="vehicles-page-classic">
+                    <div class="search-filter-container">
+                        <div class="search-box">
+                            <input type="text" class="search-input" data-search="vehicles" data-translate-placeholder="search_vehicles" placeholder="Search vehicles...">
+                            <i class="fas fa-search search-icon"></i>
+                        </div>
+                        <div class="filter-dropdown">
+                            <button class="filter-btn" data-filter-type="vehicles">
+                                <i class="fas fa-filter"></i>
+                                <span data-translate="filter">Filter</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                            <div class="filter-options"></div>
+                        </div>
+                    </div>
+                    <div class="items-grid" id="vehicles-grid-classic">
+                        <!-- Vehicles will be loaded here -->
+                    </div>
+                </div>
+
+                <div class="page" id="weapons-page-classic">
+                    <div class="search-filter-container">
+                        <div class="search-box">
+                            <input type="text" class="search-input" data-search="weapons" data-translate-placeholder="search_weapons" placeholder="Search weapons...">
+                            <i class="fas fa-search search-icon"></i>
+                        </div>
+                        <div class="filter-dropdown">
+                            <button class="filter-btn" data-filter-type="weapons">
+                                <i class="fas fa-filter"></i>
+                                <span data-translate="filter">Filter</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                            <div class="filter-options"></div>
+                        </div>
+                    </div>
+                    <div class="items-grid" id="weapons-grid-classic">
+                        <!-- Weapons will be loaded here -->
+                    </div>
+                </div>
+
+                <div class="page" id="money-page-classic">
+                    <div class="money-grid" id="money-grid-classic">
+                        <!-- Money exchange options will be loaded here -->
+                    </div>
+                </div>
+                <div class="page" id="mlos-page-classic">
+                    <div class="search-filter-container">
+                        <div class="search-box">
+                            <input type="text" class="search-input" data-search="mlos" data-translate-placeholder="search_mlos" placeholder="Search MLOs...">
+                            <i class="fas fa-search search-icon"></i>
+                        </div>
+                    </div>
+                    <div class="items-grid" id="mlos-grid-classic">
+                        <!-- MLOs will be loaded here -->
+                    </div>
+                </div>
+
+                <div class="page" id="settings-page-classic">
+                    <div class="settings-content">
+                        <div class="settings-section">
+                            <h3 data-translate="settings">Settings</h3>
+                            <div class="setting-item">
+                                <label>
+                                    <input type="checkbox" id="sounds-toggle-classic" checked>
+                                    <span data-translate="ui_sounds">UI Sounds</span>
+                                </label>
+                            </div>
+                            <div class="setting-item">
+                                <label>
+                                    <input type="checkbox" id="animations-toggle-classic" checked>
+                                    <span data-translate="animations">Animations</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="history-section">
+                            <div class="history-header">
+                                <h3 class="settings-subtitle" data-translate="purchase_history">Purchase History</h3>
+                                <button class="clear-history-btn" id="historyClearBTN-classic" onclick="clearPurchaseHistory()" data-translate="clear_history">Clear History</button>
+                            </div>
+                            <div class="history-list" id="history-list-classic">
+                                <!-- Purchase history will be loaded here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modern UI -->
+    <div id="modern-ui" class="vip-container hidden">
+        <div class="vip-tablet modern">
+            <div class="vip-navigation modern">
+                <div class="vip-header modern">
+                    <div class="logo">
+                        <img id="modern-logo" class="logo-image" alt="Server Logo">
+                        <span data-translate="vip_system">VIP System</span>
+                    </div>
+                    <div class="diamonds-display modern">
+                        <div class="left-side">
+                            <i class="fas fa-gem"></i>
+                            <span id="diamonds-count-modern">0</span>
+                        </div>
+                        <div id="vip-tier-badge" class="no-vip-badge" data-translate="no_vip_tier">No VIP Tier</div>
+                    </div>
+                </div>
+
+                <div class="nav-menu">
+                    <button class="nav-btn active" data-page="main">
+                        <i class="fas fa-home"></i>
+                        <span data-translate="nav_main">Main</span>
+                    </button>
+                    <button class="nav-btn" data-page="tiers">
+                        <i class="fas fa-crown"></i>
+                        <span data-translate="nav_tiers">VIP Tiers</span>
+                    </button>
+                    <button class="nav-btn" data-page="items">
+                        <i class="fas fa-shopping-bag"></i>
+                        <span data-translate="nav_items">Items</span>
+                    </button>
+                    <button class="nav-btn" data-page="vehicles">
+                        <i class="fas fa-car"></i>
+                        <span data-translate="nav_vehicles">Vehicles</span>
+                    </button>
+                    <button class="nav-btn" data-page="weapons">
+                        <i class="fas fa-crosshairs"></i>
+                        <span data-translate="nav_weapons">Weapons</span>
+                    </button>
+                    <button class="nav-btn" data-page="money">
+                        <i class="fas fa-dollar-sign"></i>
+                        <span data-translate="nav_money">Money</span>
+                    </button>
+                    <button class="nav-btn" data-page="mlos">
+                        <i class="fas fa-building"></i>
+                        <span data-translate="nav_mlos">MLO</span>
+                    </button>
+
+                    <button class="nav-btn" data-page="settings">
+                        <i class="fas fa-cog"></i>
+                        <span data-translate="nav_settings">Settings</span>
+                    </button>
+                    <button class="nav-btn tebex-store-btn" data-page="tebex" onclick="openTebexStore()">
+                        <i class="fas fa-store"></i>
+                        <span data-translate="nav_tebex">Tebex Store</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="vip-content modern">
+                <div class="top-bar">
+                    <div>
+                        <div class="page-title" id="page-title" data-translate="title_welcome">Welcome to VIP System</div>
+                        <div class="page-subtitle" id="page-subtitle" data-translate="title_manage_benefits">Manage your VIP benefits and purchases</div>
+                    </div>
+                    <button class="close-btn" onclick="closeMenu()">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+
+                <div class="content-wrapper">
+                    <div class="page active" id="main-page-modern">
+                        <div class="main-content">
+                            <div class="featured-section">
+                                <div class="featured-grid" id="featured-offers-modern">
+                                    <!-- Featured offers will be loaded here -->
+                                </div>
+                            </div>
+
+                            <div class="benefits-section">
+                                <h2 data-translate="vip_benefits">Your VIP Benefits</h2>
+                                <div class="benefits-list" id="benefits-list-modern">
+                                    <span data-translate="purchase_to_unlock">No VIP benefits yet. Purchase items to unlock VIP tiers!</span>
+                                </div>
+                            </div>
+
+                            <div class="redeem-section">
+                                <h2 data-translate="redeem_diamonds">Redeem Diamonds</h2>
+                                <p data-translate="tebex_transaction_id">Enter your Tebex transaction ID to redeem diamonds</p>
+                                <div class="redeem-form">
+                                    <input type="text" id="transaction-id-modern" data-translate-placeholder="enter_transaction_id" placeholder="Enter Tebex Transaction ID">
+                                    <button class="redeem-btn" onclick="redeemDiamonds()">
+                                        <i class="fas fa-unlock"></i>
+                                        <span data-translate="redeem">Redeem Now</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="page" id="tiers-page-modern">
+                        <div class="tiers-grid" id="tiers-grid-modern">
+                            <!-- VIP tiers will be loaded here -->
+                        </div>
+                    </div>
+                    
+                    <div class="page" id="items-page-modern">
+                        <div class="search-filter-container">
+                            <div class="search-box">
+                                <input type="text" class="search-input modern" data-search="items" data-translate-placeholder="search_items" placeholder="Search items...">
+                                <i class="fas fa-search search-icon"></i>
+                            </div>
+                            <div class="filter-dropdown">
+                                <button class="filter-btn modern" data-filter-type="items">
+                                    <i class="fas fa-filter"></i>
+                                    <span data-translate="filter">Filter</span>
+                                    <i class="fas fa-chevron-down"></i>
+                                </button>
+                                <div class="filter-options modern"></div>
+                            </div>
+                        </div>
+                        <div class="items-grid" id="items-grid-modern">
+                            <!-- Items will be loaded here -->
+                        </div>
+                    </div>
+
+                    <div class="page" id="vehicles-page-modern">
+                        <div class="search-filter-container">
+                            <div class="search-box">
+                                <input type="text" class="search-input modern" data-search="vehicles" data-translate-placeholder="search_vehicles" placeholder="Search vehicles...">
+                                <i class="fas fa-search search-icon"></i>
+                            </div>
+                            <div class="filter-dropdown">
+                                <button class="filter-btn modern" data-filter-type="vehicles">
+                                    <i class="fas fa-filter"></i>
+                                    <span data-translate="filter">Filter</span>
+                                    <i class="fas fa-chevron-down"></i>
+                                </button>
+                                <div class="filter-options modern"></div>
+                            </div>
+                        </div>
+                        <div class="items-grid" id="vehicles-grid-modern">
+                            <!-- Vehicles will be loaded here -->
+                        </div>
+                    </div>
+
+                    <div class="page" id="weapons-page-modern">
+                        <div class="search-filter-container">
+                            <div class="search-box">
+                                <input type="text" class="search-input modern" data-search="weapons" data-translate-placeholder="search_weapons" placeholder="Search weapons...">
+                                <i class="fas fa-search search-icon"></i>
+                            </div>
+                            <div class="filter-dropdown">
+                                <button class="filter-btn modern" data-filter-type="weapons">
+                                    <i class="fas fa-filter"></i>
+                                    <span data-translate="filter">Filter</span>
+                                    <i class="fas fa-chevron-down"></i>
+                                </button>
+                                <div class="filter-options modern"></div>
+                            </div>
+                        </div>
+                        <div class="items-grid" id="weapons-grid-modern">
+                            <!-- Weapons will be loaded here -->
+                        </div>
+                    </div>
+
+                    <div class="page" id="money-page-modern">
+                        <div class="money-grid" id="money-grid-modern">
+                            <!-- Money exchange options will be loaded here -->
+                        </div>
+                    </div>
+                    <div class="page" id="mlos-page-modern">
+                        <div class="search-filter-container">
+                            <div class="search-box">
+                                <input type="text" class="search-input modern" data-search="mlos" data-translate-placeholder="search_mlos" placeholder="Search MLOs...">
+                                <i class="fas fa-search search-icon"></i>
+                            </div>
+                            <!-- <div class="filter-dropdown">
+                                <button class="filter-btn modern" data-filter-type="mlos">
+                                    <i class="fas fa-filter"></i>
+                                    <span data-translate="filter">Filter</span>
+                                    <i class="fas fa-chevron-down"></i>
+                                </button>
+                                <div class="filter-options modern"></div>
+                            </div> -->
+                        </div>
+                        <div class="items-grid" id="mlos-grid-modern">
+                            <!-- MLOs will be loaded here -->
+                        </div>
+                    </div>
+
+                    <div class="page" id="settings-page-modern">
+                        <div class="settings-content">
+                            <div class="settings-section">
+                                <h3 data-translate="settings">Settings</h3>
+                                <div class="setting-item">
+                                    <input type="checkbox" id="sounds-toggle-modern" checked>
+                                    <span data-translate="ui_sounds">UI Sounds</span>
+                                </div>
+                                <div class="setting-item">
+                                    <input type="checkbox" id="animations-toggle-modern" checked>
+                                    <span data-translate="animations">Animations</span>
+                                </div>
+                            </div>
+                            <div class="history-section">
+                                <div class="history-header">
+                                    <h3 class="settings-subtitle" data-translate="purchase_history">Purchase History</h3>
+                                    <button class="clear-history-btn" id="historyClearBTN-modern" onclick="clearPurchaseHistory()" data-translate="clear_history">Clear History</button>
+                                </div>
+                                <div class="history-list" id="history-list-modern">
+                                    <!-- Purchase history will be loaded here -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Purchase Confirmation Modal -->
+    <div id="confirm-modal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 data-translate="confirm_purchase">Confirm Purchase</h3>
+                <button class="modal-close" onclick="closeConfirmModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="confirm-item">
+                    <img id="confirm-image" src="" alt="">
+                    <div class="confirm-details">
+                        <h4 id="confirm-name"></h4>
+                        <p id="confirm-description"></p>
+                        <div class="confirm-price">
+                            <i class="fas fa-gem"></i>
+                            <span data-translate="purchase_price">Price</span>
+                            <span id="confirm-price-amount"></span>
+                            <span data-translate="diamonds">Diamonds</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" onclick="closeConfirmModal()" data-translate="cancel">Cancel</button>
+                <button class="btn-primary" onclick="confirmPurchase()" data-translate="buy">Buy</button>
+            </div>
+        </div>
+    </div>
+    <div id="testdrive-ui" style="display: none;" class="testdrive-container">
+        <div class="testdrive-box">
+            <p>
+                <strong data-translate="test_drive_label">Test Drive:</strong>
+                <span id="testdrive-timer">00:00</span>
+            </p>
+            <p id="press-key-message">
+                <span data-translate="press_key_part1">Press</span>
+                <span id="testdrive-key" class="key-style">ESC</span>
+                <span data-translate="press_key_part2">to end</span>
+            </p>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loading-overlay" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-body loading-body">
+                <i class="fas fa-spinner fa-spin"></i>
+                <p data-translate="loading">Loading, please wait...</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
